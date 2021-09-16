@@ -1,4 +1,5 @@
-﻿using ExpenseTracker.Persistence.Context;
+﻿using ExpenseTracker.Domain.Utils.Persistence;
+using ExpenseTracker.Persistence.Context;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ExpenseTracker.Persistence
@@ -12,11 +13,12 @@ namespace ExpenseTracker.Persistence
 
         private static void ComposeDb(this IServiceCollection services)
         {
+            services.AddScoped<IExpenseDbContext>(provider => provider.GetService<ExpenseDbContext>());
+            
             services.AddDbContext<ExpenseDbContext>(
-                (sp, options) =>
+                (_, options) =>
                 {
-                    // todo simon: Configure DB
-
+                    // todo simon: (P-1) Configure DB
 #if DEBUG
                     options.EnableSensitiveDataLogging();
                     options.EnableDetailedErrors();

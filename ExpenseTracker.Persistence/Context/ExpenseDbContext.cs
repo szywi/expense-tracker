@@ -1,11 +1,12 @@
 ﻿using ExpenseTracker.Domain.Expense.Models;
+using ExpenseTracker.Domain.Utils.Persistence;
 using ExpenseTracker.Persistence.Mappings.Expense;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace ExpenseTracker.Persistence.Context
 {
-    public sealed class ExpenseDbContext : DbContext
+    internal sealed class ExpenseDbContext : DbContext, IExpenseDbContext
     {
         private readonly ILoggerFactory loggerFactory;
 
@@ -14,7 +15,7 @@ namespace ExpenseTracker.Persistence.Context
             this.loggerFactory = loggerFactory;
         }
 
-        public DbSet<ExpenseAggregate> Expenses { get; set; }
+        public DbSet<ExpenseAggregate> Expenses { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
