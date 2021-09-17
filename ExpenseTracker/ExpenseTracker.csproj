@@ -11,10 +11,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Expense\Validators" />
-    </ItemGroup>
-
-    <ItemGroup>
       <PackageReference Include="DryIoc.Microsoft.DependencyInjection" Version="5.1.0" />
       <PackageReference Include="FluentValidation" Version="10.3.3" />
     </ItemGroup>

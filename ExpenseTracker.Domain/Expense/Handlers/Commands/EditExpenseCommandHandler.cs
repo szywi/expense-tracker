@@ -5,9 +5,9 @@ using MediatR;
 
 namespace ExpenseTracker.Domain.Expense.Handlers.Commands
 {
-    public sealed class EditExpenseCommandHandler : IRequestHandler<EditExpenseCommand, Unit>
+    public sealed class EditExpenseCommandHandler : IRequestHandler<EditExpenseCommandDto, Unit>
     {
-        public Task<Unit> Handle(EditExpenseCommand request, CancellationToken cancellationToken)
+        public Task<Unit> Handle(EditExpenseCommandDto request, CancellationToken cancellationToken)
         {
             throw new System.NotImplementedException();
         }

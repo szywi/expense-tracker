@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using ExpenseTracker.Domain.Expense.Dtos.Commands;
 using ExpenseTracker.Domain.Expense.Dtos.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -17,15 +18,35 @@ namespace ExpenseTracker.Expense.Controllers
         {
             this.mediator = mediator;
         }
-        
+
+        // todo simon: (P-1) Get expenses
+        // todo simon: (P-2) Filter and search expenses
         [HttpGet]
         public async Task<IActionResult> GetExpenses(CancellationToken cancellationToken)
         {
             var query = new ExpenseQuery();
-
             var expenses = await this.mediator.Value.Send(query, cancellationToken);
 
             return this.Ok(expenses);
+        }
+
+        [HttpPost]
+        public Task AddExpense(AddExpenseCommandDto command)
+        {
+            return this.mediator.Value.Send(command);
+        }
+
+        [HttpPut("{key:guid}")]
+        public Task EditExpense(Guid key, [FromBody] EditExpenseCommandDto commandDto)
+        {
+            return this.mediator.Value.Send(commandDto);
+        }
+
+        [HttpDelete("{key:guid}")]
+        public async Task DeleteExpense(Guid key)
+        {
+            var command = new DeleteExpenseCommand(key);
+            await this.mediator.Value.Send(command);
         }
     }
 }

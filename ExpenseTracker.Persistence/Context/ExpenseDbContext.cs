@@ -16,7 +16,7 @@ namespace ExpenseTracker.Persistence.Context
         }
 
         public DbSet<ExpenseAggregate> Expenses { get; set; } = default!;
-
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
