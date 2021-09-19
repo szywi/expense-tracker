@@ -20,7 +20,7 @@ namespace ExpenseTracker.Domain.Expense.Models
 
         public PriceModel Price { get; }
 
-        // todo simon: (P-1) Make this relational
+        // todo simon: (P-2) Make this relational
         public ExpenseTypeEnum Type { get; }
 
         public DateTime TransactionTimeUtc { get; }
