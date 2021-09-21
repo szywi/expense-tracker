@@ -13,16 +13,22 @@ namespace ExpenseTracker.Domain.Expense.Models
             this.Type = type;
             this.TransactionTimeUtc = DateTime.UtcNow;
         }
+
+#pragma warning disable 8618 // Non-nullable field is uninitialized - needed by EF
+        private ExpenseAggregate()
+#pragma warning restore 8618 // Non-nullable field is uninitialized - needed by EF
+        {
+        }
         
-        public Guid Key { get; }
+        public Guid Key { get; private set; }
 
-        public string Recipient { get; }
+        public string Recipient { get; private set; }
 
-        public PriceModel Price { get; }
+        public PriceModel Price { get; private set; }
 
         // todo simon: (P-2) Make this relational
-        public ExpenseTypeEnum Type { get; }
+        public ExpenseTypeEnum Type { get; private set; }
 
-        public DateTime TransactionTimeUtc { get; }
+        public DateTime TransactionTimeUtc { get; private set; }
     }
 }

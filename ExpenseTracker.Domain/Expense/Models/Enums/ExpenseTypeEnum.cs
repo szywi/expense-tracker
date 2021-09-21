@@ -2,8 +2,9 @@
 {
     public enum ExpenseTypeEnum
     {
-        Other,
+        None,
         Food,
         Drinks,
+        Other,
     }
 }

@@ -10,13 +10,14 @@ namespace ExpenseTracker.Persistence.Context
     {
         private readonly ILoggerFactory loggerFactory;
 
-        public ExpenseDbContext(ILoggerFactory loggerFactory)
+        public ExpenseDbContext(DbContextOptions<ExpenseDbContext> options, ILoggerFactory loggerFactory)
+            : base(options)
         {
             this.loggerFactory = loggerFactory;
         }
 
         public DbSet<ExpenseAggregate> Expenses { get; set; } = default!;
-        
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -28,7 +29,7 @@ namespace ExpenseTracker.Persistence.Context
         {
             base.OnConfiguring(optionsBuilder);
 
-            if (this.loggerFactory != null) optionsBuilder.UseLoggerFactory(this.loggerFactory);
+            optionsBuilder.UseLoggerFactory(this.loggerFactory);
         }
     }
 }

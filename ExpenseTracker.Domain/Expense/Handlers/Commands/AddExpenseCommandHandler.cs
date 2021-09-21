@@ -7,7 +7,7 @@ using MediatR;
 
 namespace ExpenseTracker.Domain.Expense.Handlers.Commands
 {
-    public sealed class AddExpenseCommandHandler : IRequestHandler<AddExpenseCommandDto, Unit>
+    public sealed class AddExpenseCommandHandler : IRequestHandler<AddExpenseCommandDto, ExpenseAggregate>
     {
         private readonly IExpenseDbContext dbContext;
 
@@ -16,7 +16,7 @@ namespace ExpenseTracker.Domain.Expense.Handlers.Commands
             this.dbContext = dbContext;
         }
 
-        public async Task<Unit> Handle(AddExpenseCommandDto request, CancellationToken cancellationToken)
+        public async Task<ExpenseAggregate> Handle(AddExpenseCommandDto request, CancellationToken cancellationToken)
         {
             var expense = new ExpenseAggregate(request.Recipient,
                 request.Type,
@@ -25,8 +25,8 @@ namespace ExpenseTracker.Domain.Expense.Handlers.Commands
 
             this.dbContext.Expenses.Add(expense);
             await this.dbContext.SaveChangesAsync(cancellationToken);
-            
-            return Unit.Value;
+
+            return expense;
         }
     }
 }

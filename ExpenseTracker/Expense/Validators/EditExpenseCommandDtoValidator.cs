@@ -1,12 +1,11 @@
 ﻿using ExpenseTracker.Domain.Expense.Dtos.Commands;
 using FluentValidation;
 
-// todo simon: (P-2) Share
 namespace ExpenseTracker.Expense.Validators
 {
-    public sealed class AddExpenseCommandDtoValidator : AbstractValidator<AddExpenseCommandDto>
+    public sealed class EditExpenseCommandDtoValidator : AbstractValidator<EditExpenseCommandDto>
     {
-        public AddExpenseCommandDtoValidator()
+        public EditExpenseCommandDtoValidator()
         {
             this.RuleFor(x => x.Recipient).MaximumLength(1000);
             this.RuleFor(x => x.Amount).NotEmpty().ScalePrecision(4, 19);

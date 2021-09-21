@@ -31,9 +31,10 @@ namespace ExpenseTracker.Expense.Controllers
         }
 
         [HttpPost]
-        public Task AddExpense(AddExpenseCommandDto command)
+        public async Task<IActionResult> AddExpense(AddExpenseCommandDto command)
         {
-            return this.mediator.Value.Send(command);
+            var expense = await this.mediator.Value.Send(command);
+            return this.Created(expense.Key.ToString(), expense);
         }
 
         [HttpPut("{key:guid}")]
