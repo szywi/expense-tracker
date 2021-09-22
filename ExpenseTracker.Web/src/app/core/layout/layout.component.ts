@@ -4,12 +4,12 @@ import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { delay } from 'rxjs/operators';
 
 @Component({
-  selector: 'v-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss'],
+  selector: 'v-layout',
+  templateUrl: './layout.component.html',
+  styleUrls: ['./layout.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SidebarComponent implements AfterViewInit {
+export class LayoutComponent implements AfterViewInit {
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
 
   constructor(private readonly observer: BreakpointObserver) {}

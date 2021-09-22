@@ -1,0 +1,28 @@
+.feature-component {
+  padding: 16px;
+  height: calc(100vh - 64px - 32px);
+  display: flex;
+  flex-direction: column;
+
+  .feature-component-image {
+    flex: 1 1 30%;
+    align-self: center;
+  }
+
+  .feature-component-card {
+    flex: 1 1 70%;
+
+    .feature-component-card-title {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      align-items: flex-end;
+
+      .feature-component-card-title-button {
+        margin-top: 12px;
+        margin-right: 16px;
+      }
+    }
+  }
+}

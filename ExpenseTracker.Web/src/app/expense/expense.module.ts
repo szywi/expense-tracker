@@ -2,12 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ExpenseRootComponent } from './expense-root.component';
 import { Route, RouterModule } from '@angular/router';
-import { ExpenseListComponent } from './expense-list/expense-list.component';
-import { MatTableModule } from '@angular/material/table';
+import { AddExpenseModule } from './add-expense/add-expense.module';
+import { ExpenseListModule } from './expense-list/expense-list.module';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
-import { MatPaginatorModule } from '@angular/material/paginator';
 
 const expenseRoutes: Route[] = [
   {
@@ -17,7 +16,7 @@ const expenseRoutes: Route[] = [
 ];
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(expenseRoutes), MatTableModule, MatIconModule, MatButtonModule, MatInputModule, MatPaginatorModule],
-  declarations: [ExpenseRootComponent, ExpenseListComponent],
+  imports: [CommonModule, RouterModule.forChild(expenseRoutes), AddExpenseModule, ExpenseListModule, MatIconModule, MatCardModule, MatButtonModule],
+  declarations: [ExpenseRootComponent],
 })
 export class ExpenseModule {}

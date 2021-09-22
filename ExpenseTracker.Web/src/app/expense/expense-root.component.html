@@ -1,5 +1,13 @@
-<button mat-mini-fab>
-  <mat-icon>add</mat-icon>
-</button>
+<div class="feature-component">
+  <mat-card class="feature-component-card">
+    <div class="feature-component-card-title">
+      <h3>Expenses</h3>
 
-<v-expense-list></v-expense-list>
+      <button mat-mini-fab class="feature-component-card-title-button" color="primary" (click)="onAddExpenseClicked()">
+        <mat-icon class="feature-component-card-title-button-icon">add</mat-icon>
+      </button>
+    </div>
+
+    <v-expense-list></v-expense-list>
+  </mat-card>
+</div>

@@ -5,9 +5,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `
-    <v-sidebar>
+    <v-layout>
       <router-outlet></router-outlet>
-    </v-sidebar>
+    </v-layout>
   `,
 })
 export class AppComponent {}
