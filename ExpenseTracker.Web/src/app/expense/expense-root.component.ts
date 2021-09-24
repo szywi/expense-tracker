@@ -10,7 +10,14 @@ import { AddExpenseDlgService } from './add-expense/add-expense-dlg.service';
 export class ExpenseRootComponent {
   constructor(public readonly addExpenseDlg: AddExpenseDlgService) {}
 
-  onAddExpenseClicked(): void {
-    this.addExpenseDlg.open();
+  onAddExpenseClicked() {
+    this.addExpenseDlg.open().then(
+      (x) => {
+        // todo simon: (P-1) Submit & edit
+      },
+      () => {
+        // ignore on cancel
+      }
+    );
   }
 }

@@ -1,0 +1,11 @@
+<mat-form-field appearance="fill">
+  <mat-label>Currency</mat-label>
+
+  <input type="text" matInput [formControl]="formControl" [matAutocomplete]="auto" (ngModelChange)="onChange($event.code)" />
+
+  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayCurrencyText">
+    <mat-option *ngFor="let option of currencies$ | async" [value]="option">
+      {{ option.text }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

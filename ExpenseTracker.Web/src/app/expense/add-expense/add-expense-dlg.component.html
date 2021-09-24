@@ -1,33 +1,31 @@
 <h1 mat-dialog-title>Expense</h1>
 
-<div mat-dialog-content>
-  <mat-form-field class="w-100" appearance="fill">
-    <mat-label>Recipient</mat-label>
-    <input matInput />
-  </mat-form-field>
-
-  <div class="add-expense-row">
-    <mat-form-field class="add-expense-amount" appearance="fill">
-      <mat-label>Amount</mat-label>
-      <input matInput />
+<form [formGroup]="expense">
+  <div mat-dialog-content>
+    <mat-form-field class="w-100" appearance="fill">
+      <mat-label>Recipient</mat-label>
+      <input matInput formControlName="recipient" />
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Currency</mat-label>
-      <input matInput />
+    <div class="add-expense-row">
+      <mat-form-field class="add-expense-amount" appearance="fill">
+        <mat-label>Amount</mat-label>
+        <input type="number" matInput formControlName="amount" />
+      </mat-form-field>
+
+      <v-currency-select formControlName="currency"></v-currency-select>
+    </div>
+
+    <mat-form-field class="w-100" appearance="fill">
+      <mat-label>Type</mat-label>
+      <mat-select formControlName="type">
+        <mat-option *ngFor="let type of ExpenseTypes" [value]="type">{{ type }}</mat-option>
+      </mat-select>
     </mat-form-field>
   </div>
 
-  <mat-form-field class="w-100" appearance="fill">
-    <mat-label>Type</mat-label>
-    <mat-select>
-      <mat-option value="one">First option</mat-option>
-      <mat-option value="two">Second option</mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
-
-<div class="add-expense-buttons" mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="'foo'">Save</button>
-</div>
+  <div class="add-expense-buttons" mat-dialog-actions>
+    <button mat-button (click)="onCancelClicked()">Cancel</button>
+    <button type="submit" mat-button (click)="onSaveClicked()">Save</button>
+  </div>
+</form>
