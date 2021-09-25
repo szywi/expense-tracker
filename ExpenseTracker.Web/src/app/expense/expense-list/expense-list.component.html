@@ -1,33 +1,53 @@
-<table mat-table [dataSource]="dataSource" class="expense-table">
-  <ng-container matColumnDef="recipient">
-    <th mat-header-cell *matHeaderCellDef>Recipient</th>
-    <td mat-cell *matCellDef="let expense">{{ expense.recipient }}</td>
-  </ng-container>
+<div class="container">
+  <div class="table-container" [class.loading]="isLoading$ | async">
+    <table mat-table class="expense-table" [dataSource]="(expenses$ | async) || []" [trackBy]="trackByKey">
+      <ng-container matColumnDef="recipient">
+        <th mat-header-cell *matHeaderCellDef>Recipient</th>
+        <td mat-cell *matCellDef="let expense">{{ expense.recipient }}</td>
+      </ng-container>
 
-  <ng-container matColumnDef="amount">
-    <th mat-header-cell *matHeaderCellDef>Amount</th>
-    <td mat-cell *matCellDef="let expense">{{ expense.amount }}</td>
-  </ng-container>
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef>Amount</th>
+        <td mat-cell *matCellDef="let expense">{{ expense.amount }}</td>
+      </ng-container>
 
-  <ng-container matColumnDef="type">
-    <th mat-header-cell *matHeaderCellDef>Type</th>
-    <td mat-cell *matCellDef="let expense">{{ expense.type }}</td>
-  </ng-container>
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef>Type</th>
+        <td mat-cell *matCellDef="let expense">{{ expense.type }}</td>
+      </ng-container>
 
-  <ng-container matColumnDef="buttons">
-    <th mat-header-cell *matHeaderCellDef></th>
+      <ng-container matColumnDef="transactionTime">
+        <th mat-header-cell *matHeaderCellDef>TransactionTime</th>
+        <td mat-cell *matCellDef="let expense">{{ expense.transactionTimeUtc | date }}</td>
+      </ng-container>
 
-    <td mat-cell *matCellDef="let expense">
-      <button mat-icon-button color="primary">
-        <mat-icon>edit</mat-icon>
-      </button>
+      <ng-container matColumnDef="actions" stickyEnd>
+        <th mat-header-cell *matHeaderCellDef></th>
 
-      <button mat-icon-button color="primary">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </td>
-  </ng-container>
+        <td mat-cell *matCellDef="let expense">
+          <button type="button" mat-icon-button color="primary" (click)="edit.emit(expense)">
+            <mat-icon>edit</mat-icon>
+          </button>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-</table>
+          <button mat-icon-button color="primary" (click)="delete.emit(expense.key)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <div *ngIf="isLoading$ | async" class="loading-shadow">
+      <mat-spinner></mat-spinner>
+    </div>
+  </div>
+
+  <mat-paginator
+    [pageIndex]="pageNr$ | async"
+    [length]="totalExpenses$ | async"
+    [pageSize]="pageSize"
+    (page)="loadExpenses($event.pageIndex)"
+  ></mat-paginator>
+</div>

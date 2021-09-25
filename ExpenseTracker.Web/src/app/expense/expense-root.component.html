@@ -1,13 +1,13 @@
-<div class="feature-component">
-  <mat-card class="feature-component-card">
-    <div class="feature-component-card-title">
+<div class="expense-component">
+  <mat-card class="expense-component-card">
+    <div class="expense-component-card-title">
       <h3>Expenses</h3>
 
-      <button mat-mini-fab class="feature-component-card-title-button" color="primary" (click)="onAddExpenseClicked()">
+      <button mat-mini-fab class="expense-component-card-title-button" color="primary" (click)="addExpense()">
         <mat-icon class="feature-component-card-title-button-icon">add</mat-icon>
       </button>
     </div>
 
-    <v-expense-list></v-expense-list>
+    <v-expense-list (edit)="editExpense($event)" (delete)="deleteExpense($event)"></v-expense-list>
   </mat-card>
 </div>

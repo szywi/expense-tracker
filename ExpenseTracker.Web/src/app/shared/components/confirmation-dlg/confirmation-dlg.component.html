@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Confirmation</h1>
+
+<div mat-dialog-content>
+  <p>Are you sure?</p>
+</div>
+
+<div class="d-flex justify-content-end" mat-dialog-actions>
+  <button mat-button (click)="cancel()">No</button>
+  <button mat-button cdkFocusInitial (click)="acknowledge()">Yes</button>
+</div>

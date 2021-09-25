@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CurrencySelectComponent } from './currency-select.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
-import {ReactiveFormsModule} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [CommonModule, MatAutocompleteModule, MatInputModule, ReactiveFormsModule],

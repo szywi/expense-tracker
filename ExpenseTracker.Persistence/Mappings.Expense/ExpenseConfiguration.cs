@@ -15,7 +15,6 @@ namespace ExpenseTracker.Persistence.Mappings.Expense
 
             builder.HasAlternateKey(x => x.Key);
 
-            // todo simon: (P-2) Think about relations (is it better to store relations)
             builder.OwnsOne(x => x.Price,
                 x =>
                 {

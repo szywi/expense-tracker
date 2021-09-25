@@ -20,7 +20,7 @@ namespace ExpenseTracker.Domain.Utils.Mediator.Pipelines
             CancellationToken cancellationToken,
             RequestHandlerDelegate<TResponse> next)
         {
-            if (request.Recipient.Contains("Suspicious recipient"))
+            if (request.Command.Recipient.Contains("Suspicious recipient"))
             {
                 this.logger.LogWarning("Suspicious recipient detected!");
             }

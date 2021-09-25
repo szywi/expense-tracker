@@ -31,7 +31,11 @@ namespace ExpenseTracker
 
             services.AddControllers(x => x.Conventions.Add(new ApiRoutePrefixConvention()))
                 .AddJsonOptions(opt => { opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()); })
-                .AddFluentValidation(o => o.RegisterValidatorsFromAssemblyContaining<Startup>())
+                .AddFluentValidation(o =>
+                {
+                    o.LocalizationEnabled = false;
+                    o.RegisterValidatorsFromAssemblyContaining<Startup>();
+                })
                 .AddControllersAsServices();
 
             services.ComposeApi();
@@ -49,9 +53,6 @@ namespace ExpenseTracker
             app.UseRouting();
 
             app.UseCors(b => b.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-
-            // todo simon: (P-2) Add error handling
-            // app.UseApiErrorHandling();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }

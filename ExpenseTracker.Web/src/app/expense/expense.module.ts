@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ExpenseRootComponent } from './expense-root.component';
 import { Route, RouterModule } from '@angular/router';
-import { AddExpenseModule } from './add-expense/add-expense.module';
+import { ExpenseDlgModule } from './expense-dlg/expense-dlg.module';
 import { ExpenseListModule } from './expense-list/expense-list.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
@@ -16,7 +16,7 @@ const expenseRoutes: Route[] = [
 ];
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(expenseRoutes), AddExpenseModule, ExpenseListModule, MatIconModule, MatCardModule, MatButtonModule],
+  imports: [CommonModule, RouterModule.forChild(expenseRoutes), ExpenseDlgModule, ExpenseListModule, MatIconModule, MatCardModule, MatButtonModule],
   declarations: [ExpenseRootComponent],
 })
 export class ExpenseModule {}

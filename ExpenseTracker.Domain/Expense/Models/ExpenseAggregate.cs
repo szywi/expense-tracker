@@ -1,4 +1,5 @@
 ﻿using System;
+using ExpenseTracker.Domain.Expense.Dtos.Commands;
 using ExpenseTracker.Domain.Expense.Models.Enums;
 
 namespace ExpenseTracker.Domain.Expense.Models
@@ -26,9 +27,15 @@ namespace ExpenseTracker.Domain.Expense.Models
 
         public PriceModel Price { get; private set; }
 
-        // todo simon: (P-2) Make this relational
         public ExpenseTypeEnum Type { get; private set; }
 
         public DateTime TransactionTimeUtc { get; private set; }
+
+        public void Update(UpsertExpenseCommandDto command)
+        {
+            this.Recipient = command.Recipient;
+            this.Price = new PriceModel(command.Amount, command.CurrencyIsoCode);
+            this.Type = command.Type;
+        }
     }
 }

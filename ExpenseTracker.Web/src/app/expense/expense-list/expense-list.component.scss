@@ -1,5 +1,39 @@
-// todo simon: (P-2) Fix styles
+.container {
+  position: relative;
+}
 
-.expense-table {
+.table-container {
+  min-height: 200px;
+  max-height: 800px;
+  overflow: auto;
+
+  &.loading {
+    overflow: hidden;
+  }
+}
+
+table {
   width: 100%;
+  min-width: 600px;
+}
+
+.loading-shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 56px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mat-column-type {
+  width: 60px;
+}
+
+.mat-column-actions {
+  width: 80px;
 }

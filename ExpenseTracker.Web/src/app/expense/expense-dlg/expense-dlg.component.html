@@ -1,19 +1,19 @@
 <h1 mat-dialog-title>Expense</h1>
 
-<form [formGroup]="expense">
+<form [formGroup]="expense" (ngSubmit)="currencySelect.onSubmit()">
   <div mat-dialog-content>
     <mat-form-field class="w-100" appearance="fill">
       <mat-label>Recipient</mat-label>
       <input matInput formControlName="recipient" />
     </mat-form-field>
 
-    <div class="add-expense-row">
-      <mat-form-field class="add-expense-amount" appearance="fill">
+    <div class="expense-row">
+      <mat-form-field class="expense-amount" appearance="fill">
         <mat-label>Amount</mat-label>
         <input type="number" matInput formControlName="amount" />
       </mat-form-field>
 
-      <v-currency-select formControlName="currency"></v-currency-select>
+      <v-currency-select #currencySelect="currencySelect" formControlName="currencyIsoCode"></v-currency-select>
     </div>
 
     <mat-form-field class="w-100" appearance="fill">
@@ -24,8 +24,8 @@
     </mat-form-field>
   </div>
 
-  <div class="add-expense-buttons" mat-dialog-actions>
-    <button mat-button (click)="onCancelClicked()">Cancel</button>
-    <button type="submit" mat-button (click)="onSaveClicked()">Save</button>
+  <div class="d-flex justify-content-end" mat-dialog-actions>
+    <button mat-button (click)="cancel()">Cancel</button>
+    <button mat-button (click)="save()">Save</button>
   </div>
 </form>

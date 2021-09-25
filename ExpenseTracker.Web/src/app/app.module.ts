@@ -5,10 +5,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { ConfirmationDialogModule } from './shared/components/confirmation-dlg/confirmation-dialog.module';
 
 @NgModule({
-  imports: [HttpClientModule, BrowserModule, AppRoutingModule, BrowserAnimationsModule, CoreModule, MatToolbarModule],
+  imports: [HttpClientModule, BrowserModule, AppRoutingModule, BrowserAnimationsModule, CoreModule, ConfirmationDialogModule],
   declarations: [AppComponent],
   bootstrap: [AppComponent],
 })
