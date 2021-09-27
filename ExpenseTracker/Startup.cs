@@ -8,8 +8,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Logging;
 
-// todo simon: (P-2) Target file
-// todo simon: (P-2) Linting
 namespace ExpenseTracker
 {
     public class Startup

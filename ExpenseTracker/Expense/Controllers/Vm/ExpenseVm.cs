@@ -9,7 +9,6 @@ namespace ExpenseTracker.Expense.Controllers.Vm
         
         public string Recipient { get; set; } = default!;
 
-
         public decimal Amount { get; set; }
 
         public string CurrencyIsoCode { get; set; } = default!;

@@ -8,8 +8,8 @@
             this.CurrencyIsoCode = currencyIsoCode;
         }
 
-        public string CurrencyIsoCode { get; }
-
         public decimal Amount { get; }
+        
+        public string CurrencyIsoCode { get; }
     }
 }

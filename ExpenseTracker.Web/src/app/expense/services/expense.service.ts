@@ -16,8 +16,6 @@ export class ExpenseService {
   readonly expenses$: Observable<ExpenseModel[]>;
   readonly pageNr$ = this.pageNrSubject.asObservable();
   readonly totalExpenses$ = this.totalExpensesSubject.asObservable();
-
-  // todo simon: (P-1) This doesn't work first time
   readonly isLoading$ = this.isLoadingSubject.asObservable();
 
   constructor(private readonly expenseApiService: ExpenseApiService) {
@@ -30,17 +28,17 @@ export class ExpenseService {
 
   async addExpense(expense: UpsertExpenseModel): Promise<void> {
     await this.expenseApiService.addExpense(expense).toPromise();
-    this.pageNrSubject.next(0);
+    this.reloadExpenses();
   }
 
   async editExpense(key: string, expense: UpsertExpenseModel): Promise<void> {
     await this.expenseApiService.editExpense(key, expense).toPromise();
-    this.pageNrSubject.next(0);
+    this.reloadExpenses();
   }
 
   async deleteExpense(key: string): Promise<void> {
     await this.expenseApiService.deleteExpense(key).toPromise();
-    this.pageNrSubject.next(0);
+    this.reloadExpenses();
   }
 
   private getExpenses() {
@@ -60,5 +58,9 @@ export class ExpenseService {
         return throwError(err);
       })
     );
+  }
+
+  private reloadExpenses() {
+    this.pageNrSubject.next(0);
   }
 }

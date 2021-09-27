@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExpenseListComponent {
-  readonly displayedColumns: string[] = ['recipient', 'amount', 'type', 'transactionTime', 'actions'];
+  readonly displayedColumns = ['recipient', 'amount', 'type', 'transactionTime', 'actions'];
 
   readonly expenses$: Observable<ExpenseModel[]>;
   readonly pageNr$: Observable<number>;

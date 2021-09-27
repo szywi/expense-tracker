@@ -34,7 +34,6 @@ namespace ExpenseTracker.Expense.Controllers
             var total = await this.expenseDbContext.Value.Expenses.CountAsync(cancellationToken);
 
             var expenses = await this.expenseDbContext.Value.Expenses
-                .AsNoTracking()
                 .Skip((pageNr - 1) * pageSize)
                 .Take(pageSize)
                 .Select(x => new ExpenseVm

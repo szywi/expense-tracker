@@ -3,7 +3,7 @@
 namespace ExpenseTracker.Domain.Utils.Mediator.Behaviors
 {
     /// <summary>
-    /// Behavior assigned for a command that should log suspicious transactions.
+    /// Behavior assigned for a command that should log suspicious expense.
     /// </summary>
     public interface ILogSuspiciousExpensesBehavior
     {
